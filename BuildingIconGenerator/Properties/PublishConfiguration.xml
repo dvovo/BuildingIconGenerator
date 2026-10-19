@@ -170,6 +170,6 @@ Made by dvovo (https://mods.paradoxplaza.com/authors/dvovo) with the help of AI.
 - Available in the 12 languages of the game.
 - Public API for other mods.</ChangeLog>
 	<ExternalLink Type="github" Url="https://github.com/dvovo/BuildingIconGenerator" />
-	<!-- Public, Private or Unlisted. Publish as Private first to review the page, then switch to Public with UpdatePublishedConfiguration. -->
-	<AccessLevel Value="Private" />
+	<!-- Public, Private or Unlisted. Applied by every publish profile. -->
+	<AccessLevel Value="Public" />
 </Publish>
