@@ -164,7 +164,7 @@ and Unity 2022.3.62f2 for the shaders.
 
 The text of the Paradox Mods page lives in `DESCRIPTION.md` and is copied (XML-escaped) into the
 `LongDescription` of `BuildingIconGenerator/Properties/PublishConfiguration.xml`. Paradox Mods
-renders a subset of Markdown: headings, bold text, bullet and numbered lists, code blocks and plain
+renders a subset of Markdown: headings, bold text, bullet and numbered lists and plain
 URLs. Images for the page are in `Branding/`: the square thumbnail (`Properties/Thumbnail.png`,
 1024×1024) and six 1920×1080 gallery images (`Properties/Screenshots/`).
 
@@ -175,8 +175,10 @@ The mod is published on Paradox Mods with ModId **163874**, already set in `Publ
    `PublishConfiguration.xml`, then run **UpdatePublishedConfiguration**. No code is uploaded.
    Paradox Mods does not format code blocks and drops anything between angle brackets, so the
    description describes code in words and links to this README for the examples.
-2. The GitHub link is the `ExternalLink` in `PublishConfiguration.xml`.
-3. Code changes: raise `ModVersion`, update `ChangeLog` and use **PublishNewVersion**.
+   Do not put GitHub links in the description: with `https://github.com/...` links in it, Paradox
+   Mods rejects the update with "Network response was invalid". The description refers to the
+   GitHub button of the page instead, which is the `ExternalLink`.
+2. Code changes: raise `ModVersion`, update `ChangeLog` and use **PublishNewVersion**.
 
 ## Repository layout
 

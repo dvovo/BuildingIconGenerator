@@ -102,7 +102,7 @@ Next to the icons, the mod keeps a small cache in **ModsData\BuildingIconGenerat
 
 BIG shares its icons with other mods through a small public API. Your mod can show a 3D icon for any building without rendering anything itself.
 
-The complete guide, with code examples, is on GitHub: https://github.com/dvovo/BuildingIconGenerator#api-for-other-mods
+The complete guide, with code examples, is in the GitHub repository.
 
 ### Why use the API instead of reading the folder
 
@@ -119,7 +119,7 @@ The complete guide, with code examples, is on GitHub: https://github.com/dvovo/B
 Use this when your mod needs the icons to work. Players who subscribe to your mod get BIG installed automatically, and you don't ship any file of BIG with your mod.
 
 1. **Declare the dependency.** In your PublishConfiguration.xml, add a Dependency element with the Id of BIG on Paradox Mods: **163874**.
-2. **Add the client.** Copy Samples/BigIcons.cs into your mod and change its namespace: https://github.com/dvovo/BuildingIconGenerator/blob/HEAD/Samples/BigIcons.cs
+2. **Add the client.** Copy the file Samples/BigIcons.cs from the GitHub repository into your mod and change its namespace.
 3. **Use it.** BigIcons.TryGetThumbnailUri(prefab.name, out uri) gives the address of a building's icon, ready for UIObject.m_Icon. BigIcons.SubscribeIconUpdated tells you when an icon is written, and BigIcons.RequestGeneration asks for one. No DLL to copy, reference or include.
 
 **Alternative: a compile-time reference.** If you prefer to call BIG's classes directly, reference BuildingIconGenerator.dll from your BIG installation with Private set to false, and call BuildingIcons in the namespace BuildingIconGenerator.Api. The compiler uses the DLL only to check your code; nothing is copied into your mod. With this alternative the dependency of step 1 is required: without BIG installed, your mod would fail to load.
@@ -142,13 +142,11 @@ Class BuildingIconGenerator.Api.BuildingIcons. Every lookup takes the prefab nam
 - **IconUpdated** (event): raised on the main thread after an icon is written, with the prefab name.
 - **ApiVersion**: raised whenever a member changes meaning.
 
-Source code and documentation: https://github.com/dvovo/BuildingIconGenerator
+Source code and full documentation in the GitHub repository.
 
 ## Support
 
-Bug reports are welcome on GitHub. Please include the log file **Logs\BuildingIconGenerator.log** from the game's user-data folder:
-
-https://github.com/dvovo/BuildingIconGenerator/issues
+Bug reports are welcome in the Issues section of the GitHub repository. Please include the log file **Logs\BuildingIconGenerator.log** from the game's user-data folder.
 
 Made by dvovo (https://mods.paradoxplaza.com/authors/dvovo) with the help of AI. Open source under the MIT License.</LongDescription>
 	<Thumbnail Value="Properties/Thumbnail.png" />
