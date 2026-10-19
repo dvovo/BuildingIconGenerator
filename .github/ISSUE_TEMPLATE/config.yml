@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Mod page on Paradox Mods
+    url: https://mods.paradoxplaza.com/mods/163874/Windows
+    about: Download the mod, read how to use it, and leave a comment.
+  - name: Documentation and API for mod developers
+    url: https://github.com/dvovo/BuildingIconGenerator#api-for-other-mods
+    about: How to use the icons from your own mod.

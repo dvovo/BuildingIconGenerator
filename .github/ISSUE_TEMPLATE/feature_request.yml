@@ -1,0 +1,19 @@
+name: Feature request
+description: An idea to improve Building Icon Generator.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like?
+      description: Describe the feature and what it would let you do.
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Why is it useful?
+      description: How you would use it, for example in your city, in a guide or in your own mod.
+    validations:
+      required: false
