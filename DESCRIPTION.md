@@ -1,0 +1,147 @@
+# Building Icon Generator (BIG)
+
+**A 3D icon for every building in Cities: Skylines II, rendered automatically from the game's own assets.**
+
+Building Icon Generator renders an icon of every building in your game: zoned and signature buildings, city services, transport, parks, landmarks and building upgrades, from the base game, DLC, content packs and mods. Each icon shows the building on its lot, together with the props, trees, fences and road markings the game places with it.
+
+The icons are yours to use: in the game's own menus instead of the default thumbnails, as PNG files for guides, wikis, maps or videos, and in other mods through a small public API.
+
+## Features
+
+- **Every building, automatically.** The first start renders the whole catalogue in the background at the main menu, asset packs and modded buildings included. After that, only new buildings, changed buildings and missing icons are rendered.
+- **Faithful to the game.** Meshes, textures and colour variations come from the packaged assets. Brand and parent colours, windows, glass, water, metal, vegetation and see-through props are all handled.
+- **The whole lot.** Ground surfaces, parking lines, paths, trees, hedges and props are placed the way the game places them.
+- **Sharp in the game's menus.** Next to every 1024 × 1024 icon, a 128 × 128 thumbnail is written for the interface, the same size the game uses for its own thumbnails, so icons stay clean at button size.
+- **Never in your way.** Icons are only rendered at the main menu, and the menu stays responsive meanwhile. If you load a city before they are done, rendering stops at once and carries on the next time you are at the main menu, so it never costs frames while you play.
+- **Self-healing.** Icons deleted from the folder are rendered again at the main menu, even if they were deleted while the game was closed. Buildings changed by a game or mod update get a new icon.
+- **In your language.** Available in the 12 languages of the game (English, German, French, Italian, Spanish, Brazilian Portuguese, Polish, Russian, Japanese, Korean, Simplified and Traditional Chinese), following the language selected in the game.
+- **Safe.** The mod only reads game assets. No game file is ever modified, and the in-game icons are only replaced in memory.
+
+## Getting started
+
+1. Subscribe to the mod and start the game.
+2. Stay at the main menu for a moment. A notification in the corner shows the progress, and another one tells you when the icons are ready. You can keep using the menu meanwhile.
+3. That's it. Later starts only render what is new or missing, usually nothing, so they take no time at all.
+
+If you start a city before the first run has finished, nothing is lost: the remaining icons are rendered the next time you return to the main menu.
+
+## How long it takes
+
+Measured on the test system (NVIDIA RTX 4070 Ti, AMD Ryzen 5 7600X):
+
+- **First start, base game and DLC:** all 3 429 buildings in 104 seconds.
+- **Rendering everything again with the cache kept** (Regenerate all icons, or after deleting the icons): the same 3 429 buildings in 66 seconds.
+- **A large mod collection:** 6 984 more buildings from asset packs and mods in 147 seconds. More than 10 000 buildings in total in about four minutes.
+- **Every later start:** only new or changed buildings, usually a few seconds or nothing.
+
+Icons are rendered on the graphics card. With other graphics cards, processors or storage, rendering can be noticeably faster or slower.
+
+## Using the icons
+
+### In the game
+
+Open **Options > Building Icon Generator** and choose an option under **Use the generated icons in the game**:
+
+- **Off** (default): the game shows its own thumbnails.
+- **Zoned and signature buildings**: the generated icons replace the thumbnails of zoned and signature buildings.
+- **All buildings**: also city services, transport, parks, landmarks and building upgrades.
+
+The change applies at once, in the menus and panels of the game. Setting it back to **Off** restores the original thumbnails immediately. It is never applied in the Editor.
+
+### As image files
+
+Every icon is a transparent PNG in this folder:
+
+**%USERPROFILE%\AppData\LocalLow\Colossal Order\Cities Skylines II\ModsData\BuildingIconGenerator\icons**
+
+The **Open icons folder** button in the options opens it directly.
+
+- **Large icons:** 1024 × 1024 PNG files in the icons folder, for guides, wikis, maps, videos or your own projects.
+- **Thumbnails:** 128 × 128 copies in the **thumbnails** subfolder, with the same file names, for small sizes.
+- **File names:** each file is named after the building's prefab, for example ElementarySchool01.png or EU_ResidentialLow01_L1_3x6.png. Only names that Windows cannot store as they are get a short code added.
+
+The icons show content made by Colossal Order, Paradox Interactive and the authors of the mods you use. When you share them, respect the terms of the game and of each mod's author.
+
+### In other mods
+
+Other mods can show these icons through BIG's public API. See **For mod developers** below.
+
+## Options
+
+- **Generate icons automatically** (on by default): renders missing and out-of-date icons after the game starts, including icons deleted from the folder. Turn it off to render only when you ask for it with the buttons below.
+- **Use the generated icons in the game** (Off by default): see **Using the icons** above.
+- **Generate missing icons now**: renders the missing and out-of-date icons right away, without waiting for the next start. Like every run, it works at the main menu.
+- **Regenerate all icons**: renders every icon again, including the existing ones.
+- **Delete unused icons**: deletes the icons of buildings that are not installed right now (for example from mods you removed), and any other PNG in the folder that belongs to no building. Icons of content you install again are rendered again automatically.
+- **Open icons folder**: opens the folder with the PNG files.
+
+## The cache, and rendering again
+
+Next to the icons, the mod keeps a small cache in **ModsData\BuildingIconGenerator\cache** (about 3 MB). It remembers where each texture is in the game's packages and how much detail each one needs for an icon.
+
+- **Keep it** and every later run is faster: rendering everything again takes about a third less time than the first start (66 instead of 104 seconds for the base game).
+- **Deleting it is safe:** it is rebuilt automatically during the next run, which is then as slow as the first start. There is no need to delete it to fix an icon.
+- **To render one icon again**, delete its PNG from the icons folder: it is rendered again automatically at the main menu, even if the game is already running (with Generate icons automatically on; otherwise use Generate missing icons now).
+- **To render everything again**, use **Regenerate all icons**. The cache is kept and used.
+
+## Good to know
+
+- **Updated buildings:** an icon is rendered again when a game or mod update changes the building: its composition (models, lot, props, lanes) or the files of its own models and materials. Changes made only to props or textures shared with other buildings are not tracked; to refresh such an icon, delete its PNG or use **Regenerate all icons**.
+- **Disk space:** about 0.5 MB per building, thumbnail included. The base game and DLC take about 1.8 GB; 10 000 buildings take about 5 GB. **Delete unused icons** frees the space taken by mods you removed.
+- **What gets an icon:** every building with a model, including building upgrades. Placeholder entries, which only stand for a random choice among other buildings, are skipped.
+- **Missing content:** if a building uses a content pack or mod you don't have, its icon is drawn without that element. It is rendered again automatically when your installed content changes.
+- **Uninstalling:** unsubscribe, then delete the folders ModsData\BuildingIconGenerator (icons and cache) and ModsSettings\BuildingIconGenerator (options) from the game's user-data folder.
+
+## For mod developers
+
+BIG shares its icons with other mods through a small public API. Your mod can show a 3D icon for any building without rendering anything itself.
+
+The complete guide, with code examples, is on GitHub: https://github.com/dvovo/BuildingIconGenerator#api-for-other-mods
+
+### Why use the API instead of reading the folder
+
+- **Exact match.** An icon's file is normally the prefab name plus .png, but names Windows cannot store as they are (forbidden characters, very long names, two names that differ only in letter case) get a slightly different file name, and the folder may change in future versions. The API always finds the right icon for a prefab.
+- **Only finished icons.** A PNG in the folder can be missing, deleted or being rewritten at that moment. The API only reports icons that are completely written and still on disk.
+- **Instant lookups.** Answers come from an in-memory index: no disk access and no folder scans, safe from any thread.
+- **Notifications.** The IconUpdated event tells you when an icon is created or rewritten, so you never have to poll the folder.
+- **On demand.** RequestGeneration asks BIG to render an icon your mod needs.
+- **Ready for the UI.** TryGetUri and TryGetThumbnailUri return a coui:// address that the game's interface can display directly, as an image source or as UIObject.m_Icon. A file from another mod's folder cannot be shown in the UI without it. The 128 × 128 thumbnail is the size the game uses for its own thumbnails, and stays sharp at button size.
+- **Stable.** ApiVersion is raised whenever a member changes meaning.
+
+### Option 1: required dependency
+
+Use this when your mod needs the icons to work. Players who subscribe to your mod get BIG installed automatically, and you don't ship any file of BIG with your mod.
+
+1. **Declare the dependency.** In your PublishConfiguration.xml, add a Dependency element with the Id of BIG on Paradox Mods: **163874**.
+2. **Add the client.** Copy Samples/BigIcons.cs into your mod and change its namespace: https://github.com/dvovo/BuildingIconGenerator/blob/HEAD/Samples/BigIcons.cs
+3. **Use it.** BigIcons.TryGetThumbnailUri(prefab.name, out uri) gives the address of a building's icon, ready for UIObject.m_Icon. BigIcons.SubscribeIconUpdated tells you when an icon is written, and BigIcons.RequestGeneration asks for one. No DLL to copy, reference or include.
+
+**Alternative: a compile-time reference.** If you prefer to call BIG's classes directly, reference BuildingIconGenerator.dll from your BIG installation with Private set to false, and call BuildingIcons in the namespace BuildingIconGenerator.Api. The compiler uses the DLL only to check your code; nothing is copied into your mod. With this alternative the dependency of step 1 is required: without BIG installed, your mod would fail to load.
+
+### Option 2: optional integration
+
+Use this when your mod works on its own and only shows icons if BIG happens to be installed. Do steps 2 and 3 with BigIcons.cs and skip step 1: without BIG, every call simply reports that there is no icon.
+
+### API reference
+
+Class BuildingIconGenerator.Api.BuildingIcons. Every lookup takes the prefab name (PrefabBase.name) or the prefab itself.
+
+- **TryGetPath(name, out path)**: full path of the building's PNG.
+- **TryGetUri(name, out uri)**: UI address (coui://buildingicons/...?v=...), usable as an image source or as UIObject.m_Icon once UriAvailable is true. The v parameter changes when the icon is rewritten, so the UI never shows a stale copy.
+- **TryGetThumbnailUri(name, out uri)** / **TryGetThumbnailPath(name, out path)**: the same for the 128 × 128 thumbnail (coui://buildingicons/thumbnails/...). Use it for anything shown at button size, such as UIObject.m_Icon: the game's UI draws images without mipmaps, so the full-size icon shrunk that much looks jagged.
+- **HasIcon(name)** / **TryGetWriteTime(name, out utc)**: whether the icon exists, and when it was written.
+- **GetAll()** / **Count** / **Folder**: every building with an icon, how many, and where they are.
+- **IsAvailable** / **UriAvailable** / **IsGenerating**: index loaded, UI address mapped, a run in progress.
+- **RequestGeneration(name)**: asks for the icon to be rendered at the next opportunity, at the main menu with automatic generation on.
+- **IconUpdated** (event): raised on the main thread after an icon is written, with the prefab name.
+- **ApiVersion**: raised whenever a member changes meaning.
+
+Source code and documentation: https://github.com/dvovo/BuildingIconGenerator
+
+## Support
+
+Bug reports are welcome on GitHub. Please include the log file **Logs\BuildingIconGenerator.log** from the game's user-data folder:
+
+https://github.com/dvovo/BuildingIconGenerator/issues
+
+Made by dvovo (https://mods.paradoxplaza.com/authors/dvovo) with the help of AI. Open source under the MIT License.

@@ -1,0 +1,21 @@
+# Visual Studio / .NET
+.vs/
+bin/
+obj/
+*.user
+*.suo
+
+# Unity (shader project)
+Shaders/[Ll]ibrary/
+Shaders/[Tt]emp/
+Shaders/[Ll]ogs/
+Shaders/[Uu]ser[Ss]ettings/
+Shaders/[Oo]bj/
+Shaders/AssetBundles/
+*.csproj.user
+Shaders/*.csproj
+Shaders/*.sln
+
+# Toolchain leftovers and local previews
+BuildingIconGenerator/Library/
+Branding/vista_previa_mod.html
